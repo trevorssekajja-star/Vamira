@@ -3092,10 +3092,17 @@ function loadAdminPanel() {
   if (descEl) descEl.value = sDesc;
 }
 </script>
-</body>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          window.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script></body>
 </html>
-<div class="product">
-  <img src="images/cinderella-perfume.jpg" alt="Oud Perfume">
-  <h3>Cinderella</h3>
-  <p>UGX 15000</p>
-</div>
